@@ -5,20 +5,20 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
   {
     stop("wrong pollant given")
   }
-setwd(directory)
+dir <- paste0("/home/ruben/R/", directory)
+setwd(dir)
 
-message(pollutant)
 files <- vector()
 
 for (i in id)
 {
   nuls <- paste0(rep("0",(3-nchar(id[i]))),collapse='')
   pat <- paste0(nuls, id[i],".csv", collapse='')
-  message("looking for files:", pat)
+  # message("looking for files:", pat)
   found <- list.files(path=".",pattern=pat)
   files <- c(files,found)
 }
-message(files, "class files: ", class(files), "length files: ", length(files))
+# message(files, "class files: ", class(files), "length files: ", length(files))
 
 my_df <-data.frame()
 
