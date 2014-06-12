@@ -1,4 +1,10 @@
 pollutantmean <- function(directory, pollutant, id = 1:332) {
+  
+  polls <- c("sulfate","nitrate")
+  if(!(pollutant %in% polls))
+  {
+    stop("wrong pollant given")
+  }
 setwd(directory)
 
 message(pollutant)
@@ -12,8 +18,13 @@ for (i in id)
   found <- list.files(path=".",pattern=pat)
   files <- c(files,found)
 }
-message(files)
+message(files, "class files: ", class(files), "length files: ", length(files))
 
-data = lapply(files, read.csv)
+my_df <-data.frame()
+
+for (file in files){
+  my_df <- rbind(my_df, read.csv(file )  )
+}
+mean(my_df[!is.na(my_df[pollutant]),pollutant ])
 
 }
