@@ -12,9 +12,10 @@ files <- vector()
 
 for (i in id)
 {
-  nuls <- paste0(rep("0",(3-nchar(id[i]))),collapse='')
-  pat <- paste0(nuls, id[i],".csv", collapse='')
-  # message("looking for files:", pat)
+  #message("i:",i)
+  nuls <- paste0(rep("0",(3-nchar(i))),collapse='')
+  pat <- paste0(nuls, i,".csv", collapse='')
+  #message("looking for files:", pat)
   found <- list.files(path=".",pattern=pat)
   files <- c(files,found)
 }
