@@ -18,9 +18,10 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 Result of script
 ----------------
 When the run_analysis.R script is successfully sourced 2 new files are created:
-1. tidy__mean_and_std_measuement_values.csv
+
+1. tidy_mean_and_std_measuement_values.csv
 2. tidy_average_measurement_values_per_subject_and_activity.csv
 
-Information on the Data and the working of the script
+Information on the data and the working of the script
 -----------------------------------------------------
 More information on the source data, the resulting tidy data files and the method of getting from source to tidy data sets, can be found in the CodeBook.md file that accompanies this script. 
