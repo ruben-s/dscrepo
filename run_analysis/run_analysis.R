@@ -1,5 +1,6 @@
 # parameter to ease testing (not all data is read in at all times)
 # to disable set rows_to_read = -1 -> ignored by read.table
+# use only for debugging purposes: not to be altered for creating the requested tidy data sets
 rows_to_read <- c(4)
 #
 # read all datafiles
@@ -62,4 +63,25 @@ cols_to_select[3] <- TRUE
 
 # select matched measurements 
 matched_meas <- merged_meas[, cols_to_select]
+
+# write mathed_means to file
+write.csv(matched_meas, "./tidy_mean_and_std_measuement_values.csv")
+
+## create tidy dataset with averages for each Activity/Subject combination
+
+# select relevant columns - Activty_Id is no longer needed
+to_average <- merged_meas[,2:564]
+
+# calculate column means
+averaged_meas_list <- by(to_average[,3:563], simplify = TRUE,  interaction(to_average$Activity_Name, to_average$Subject_Id), function(x) colMeans(x))
+
+# re-create a data.frame
+averaged_meas <- data.frame(names(averaged_meas_list), matrix(unlist(averaged_meas_list), length(averaged_meas_list), byrow=TRUE))
+names(averaged_meas) <- c("combination_Act_Subj", name_meas)
+
+# write to file
+write.csv(averaged_meas,"tidy_average_measurement_values_per_subject_and_activity.csv")
+
+
+
 
