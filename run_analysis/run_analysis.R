@@ -1,7 +1,7 @@
 # parameter to ease testing (not all data is read in at all times)
 # to disable set rows_to_read = -1 -> ignored by read.table
 # use only for debugging purposes: not to be altered for creating the requested tidy data sets
-rows_to_read <- c(4)
+rows_to_read <- c(-1)
 #
 # read all datafiles
 activity_labels <- read.delim("./activity_labels.txt",sep=" ", header=FALSE,stringsAsFactors=FALSE)
